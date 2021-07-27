@@ -1,0 +1,22 @@
+.footer__card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    // width: ;
+    flex: 1;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .card{
+      margin-top: 2rem;
+  }
+
+  .card-img{
+      cursor: pointer;
+  }
