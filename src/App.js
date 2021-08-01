@@ -20,7 +20,6 @@ function App() {
 
   const catigories = (cat, index) => {
     if (cat) {
-      console.log(cat)
       axios.get(`http://localhost:3001/items?catigories=${cat}`)
         .then(({ data }) => setItems(data))
         .then(setActiveLink(index))

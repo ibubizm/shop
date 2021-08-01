@@ -1,7 +1,7 @@
 import './card.scss'
 
 
-export const Card = ({ item, onOpen }) => {
+export const Card = ({ item, onOpen, add }) => {
 
     return (
         <>
@@ -14,7 +14,7 @@ export const Card = ({ item, onOpen }) => {
                     <p className="card-text" style={{ maxRow: 4 }}>{item.description}</p>
                     <div className="footer__card">
                         <span>{item.price} BYN</span>
-                        <button className="btn btn-primary">Add</button>
+                        <button onClick={() => add(item)} className="btn btn-primary">Add</button>
                     </div>
                 </div>
             </div >

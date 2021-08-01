@@ -1,0 +1,4 @@
+export const ADD_TO_BASKET = 'ADD_TO_BASKET'
+export const TOTAL_PRICE = 'TOTAL_PRICE'
+export const TOTAL_COUNT = 'TOTAL_COUNT'
+export const DELETE_FROM_CART = 'DELETE_FROM_CART'

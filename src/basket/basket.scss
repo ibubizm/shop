@@ -1,0 +1,25 @@
+
+.basket__footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card{
+    margin-right: 10px;
+}
+
+.footer{
+    border-radius: 10px;
+    padding: 10px;
+
+}
+
+.footer__date{
+    margin-bottom: 10px;
+}
+
+.add__address{
+    text-decoration: underline;
+    cursor: pointer;
+}

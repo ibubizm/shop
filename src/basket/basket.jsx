@@ -1,20 +1,62 @@
-
+import { useDispatch, useSelector } from "react-redux"
+import Button from 'react-bootstrap/Button'
+import { BasketItem } from "./basket_item"
+import { useEffect } from "react"
+import { totalPrice, deleteFromCart } from "../redux/reducers/actions"
+import { useState } from "react"
+import { ModalAddress } from './modalAddress'
 
 export const Basket = () => {
+    const dispatch = useDispatch()
+    const basketProduct = useSelector(({ ProductReducer }) => ProductReducer.items)
+    const totalprice = useSelector(({ ProductReducer }) => ProductReducer.price)
+    const [address, setAddress] = useState('')
+    const [visible, setVisible] = useState(false)
+
+    const del = (index) => {
+        basketProduct.splice(index, 1)
+        dispatch(deleteFromCart(basketProduct))
+    }
+
+    const openModal = () => {
+        setVisible(true)
+    }
+
+    const closeModal = () => {
+        setVisible(false)
+    }
+
+    // const setaddress = () => {
+
+    // }
+
+
     return (
         <>
             <h1>basket</h1>
-            {/* <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
-                    <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of
-                        the card's content.
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-            </Card> */}
+            <div className="row mb-5  row-cols-lg-2" >
+                {basketProduct.length ?
+                    basketProduct.map((item, index) =>
+                        <BasketItem item={item} del={del} index={index} />
+                    )
+                    :
+                    <h1>cart is empty</h1>
+                }
+            </div>
+            <div className="footer" style={{ backgroundColor: 'gainsboro', width: 300 }}>
+                <div className="footer__date" style={{ display: 'grid' }}>
+                    <span>Total price: {totalprice}</span>
+                    {address ?
+                        <span>{address}</span>
+                        :
+                        <span className="add__address" onClick={openModal}>add address</span>}
+                </div>
+                {visible &&
+                    <ModalAddress onOpen={openModal} onClose={closeModal} />}
+
+                <Button variant="primary" >pay</Button>
+            </div>
+
         </>
     )
 }

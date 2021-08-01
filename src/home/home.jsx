@@ -2,11 +2,21 @@ import { Card } from '../card/card'
 import { useState } from 'react'
 import { ModalCard } from '../card/modalCard'
 import { Slider } from './slider'
+import { useDispatch, useSelector } from 'react-redux'
+import { addItem } from '../redux/reducers/actions'
+import { totalPrice, totalCount } from "../redux/reducers/actions"
 
 
 export const Home = ({ items }) => {
     const [visible, setVisible] = useState(false)
     const [activeItem, setActiveItem] = useState()
+    const dispatch = useDispatch()
+    const basketProduct = useSelector(({ ProductReducer }) => ProductReducer.items)
+    const totalprice = useSelector(({ ProductReducer }) => ProductReducer.price)
+    const price = basketProduct.reduce((sum, obj) => Number(obj.price) + sum, 0)
+
+
+
 
     const openModal = (item) => {
         setVisible(true)
@@ -15,6 +25,12 @@ export const Home = ({ items }) => {
 
     const closeModal = () => {
         setVisible(false)
+    }
+
+    const add = (item) => {
+        dispatch(addItem(item))
+        dispatch(totalPrice())
+        dispatch(totalCount())
     }
 
 
@@ -29,6 +45,7 @@ export const Home = ({ items }) => {
                         <Card
                             item={item}
                             onOpen={openModal}
+                            add={add}
                         />
                     </div>
                 )}
