@@ -1,54 +1,70 @@
 {
-    "items": [
-        {
-            "id": "1",
-            "title": "Xbox Series X",
-            "img": "https://warp.by/4841-large_default/xbox-series-x-.webp",
-            "description": "the most charged console",
-            "price": "1700",
-            "catigories": "items"
-        },
-        {
-            "id": "2",
-            "title": "Xbox Series S",
-            "img": "https://warp.by/4876-large_default/xbox-series-s.webp",
-            "description": "just ok",
-            "price": "900",
-            "catigories": "items"
-        },
-        {
-            "id": "3",
-            "title": "PS5",
-            "img": "https://warp.by/5226-large_default/sony-playstation-5-digital-edition.webp",
-            "description": "yoshida pidor",
-            "price": "2200",
-            "catigories": "items"
-        },
-        {
-            "id": "4",
-            "title": "PS4 slim",
-            "img": "https://warp.by/2321-large_default/sony-ps4-slim-1tb.webp",
-            "description": "yoshida pidor",
-            "price": "650",
-            "catigories": "items"
-        },
-        {
-            "id": "5",
-            "title": "GTA V",
-            "img": "https://warp.by/1619-large_default/grand-theft-auto-v-ps4.webp",
-            "description": "Переключайтесь между Майклом, Тревором и Франклином, которых связывают тесные узы дружбы, и проворачивайте дерзкие налеты и ограбления на территории Лос-Сантоса и округа Блэйн в приключении с самым большим, подробным и живым открытым миром. \"Переключайтесь между Майклом, Тревором и Франклином, которых связывают тесные узы дружбы, и проворачивайте дерзкие налеты и ограбления на территории Лос-Сантоса и округа Блэйн в приключении с самым большим, подробным и живым открытым миром. ",
-            "price": 50,
-            "catigories": "games"
-        }
-    ],
-    "users": [
-        {
-            "id": 1,
-            "name": "Ernest",
-            "lastName": "Ibubizm",
-            "avatar": "https://warp.by/1619-large_default/grand-theft-auto-v-ps4.webp",
-            "email": "ibubizm@mail.ru",
-            "password": "123"
-        }
-    ]
+  "items": [
+    {
+      "id": "1",
+      "title": "Xbox Series X",
+      "img": "https://warp.by/4841-large_default/xbox-series-x-.webp",
+      "description": "the most charged console",
+      "price": "1700",
+      "catigories": "items"
+    },
+    {
+      "id": "2",
+      "title": "Xbox Series S",
+      "img": "https://warp.by/4876-large_default/xbox-series-s.webp",
+      "description": "just ok",
+      "price": "900",
+      "catigories": "items"
+    },
+    {
+      "id": "3",
+      "title": "PS5",
+      "img": "https://warp.by/5226-large_default/sony-playstation-5-digital-edition.webp",
+      "description": "yoshida pidor",
+      "price": "2200",
+      "catigories": "items"
+    },
+    {
+      "id": "4",
+      "title": "PS4 slim",
+      "img": "https://warp.by/2321-large_default/sony-ps4-slim-1tb.webp",
+      "description": "yoshida pidor",
+      "price": "650",
+      "catigories": "items"
+    },
+    {
+      "id": "5",
+      "title": "GTA V",
+      "img": "https://warp.by/1619-large_default/grand-theft-auto-v-ps4.webp",
+      "description": "Переключайтесь между Майклом, Тревором и Франклином, которых связывают тесные узы дружбы, и проворачивайте дерзкие налеты и ограбления на территории Лос-Сантоса и округа Блэйн в приключении с самым большим, подробным и живым открытым миром. \"Переключайтесь между Майклом, Тревором и Франклином, которых связывают тесные узы дружбы, и проворачивайте дерзкие налеты и ограбления на территории Лос-Сантоса и округа Блэйн в приключении с самым большим, подробным и живым открытым миром. ",
+      "price": 50,
+      "catigories": "games"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Ernest",
+      "lastName": "Ibubizm",
+      "email": "ibubizm@mail.ru",
+      "password": "123",
+      "repeatPassword": "123"
+    },
+    {
+      "name": "a",
+      "lastName": "s",
+      "email": "a1234765@yandex.ru",
+      "password": "123",
+      "repeatPassword": "123",
+      "id": 2
+    },
+    {
+      "name": "jopa",
+      "lastName": "big",
+      "email": "jopa@mail.ru",
+      "password": "123",
+      "repeatPassword": "123",
+      "id": 3
+    }
+  ]
 }

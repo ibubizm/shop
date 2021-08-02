@@ -1,7 +1,9 @@
-import { BasketForm } from "./basketForm"
-
+// import { BasketForm } from "./basketForm"
+import { reduxForm, Field } from 'redux-form'
+import { Form } from './basketForm'
 
 export const ModalAddress = ({ onOpen, onClose }) => {
+
     return (
         <>
             <div className={onOpen ? 'modal fade show' : 'modal fade '} style={{ display: 'block' }} id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-modal="true" role="dialog">
@@ -12,7 +14,7 @@ export const ModalAddress = ({ onOpen, onClose }) => {
                             <button onClick={onClose} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <BasketForm />
+                            <Form />
                         </div>
                         <div className="modal-footer">
                             <button onClick={onClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -4,6 +4,7 @@ import { Basket } from './basket/basket'
 import { Home } from './home/home'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { Registration } from './log/registration'
 
 
 function App() {
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route path="/basket">
             <Basket />
+          </Route>
+          <Route path="/registration">
+            <Registration />
           </Route>
         </div>
       </Switch>

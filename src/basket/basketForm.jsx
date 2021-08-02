@@ -1,17 +1,44 @@
-import { reduxForm, Field } from 'redux-form'
+import { Formik } from 'formik'
+import Button from 'react-bootstrap/Button'
+import * as yup from 'yup'
 
-export const BasketForm = () => {
+export const Form = () => {
+    const validationSchema = yup.object().shape({
+        name: yup.string().required('required field'),
+        lastName: yup.string().required()
+
+    })
     return (
-        <form>
-            <div>
-                <Field placeholder="name" name="name" component="input" />
-            </div>
-            <div>
-                <Field placeholder="phone" name="phone" component="input" />
-            </div>
-            <div>
-                <Field placeholder="address" name="address" component="input" />
-            </div>
-        </form>
+        <Formik
+            initialValues={{
+                name: '',
+                lastName: '',
+                email: '',
+                password: '',
+                repeatPassword: ''
+            }}
+            validateOnBlur
+            onSubmit={(values) => console.log(values)}
+        >
+            {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
+                <div className="form">
+                    <label htmlFor="name">name</label>
+                    <input
+                        type="text"
+                        name={'name'}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.name}
+                    />
+                    {touched.name && errors.name && <p>{errors.name}</p>}
+                    <Button
+                        disabled={!isValid && !dirty}
+                        onClick={handleSubmit}
+                        type={'submit'}
+                    >registration</Button>
+
+                </div>
+            )}
+        </Formik>
     )
 }

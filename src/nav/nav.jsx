@@ -59,6 +59,9 @@ export const Nav = ({ catigor, activeLink }) => {
                             <span style={{ color: '#fff' }}>{totalprice}BYN</span>
                         </Link>
                     </div>
+                    <Link style={{ color: '#fff', marginLeft: '20px' }} to="/registration">
+                        log in
+                    </Link>
                 </div>
             </div>
         </nav>
