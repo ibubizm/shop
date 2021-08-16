@@ -4,7 +4,7 @@ import { BasketItem } from "./basket_item"
 import { useEffect } from "react"
 import { totalPrice, deleteFromCart } from "../redux/reducers/actions"
 import { useState } from "react"
-import { ModalAddress } from './modalAddress'
+// import { ModalAddress } from './modalAddress'
 
 export const Basket = () => {
     const dispatch = useDispatch()
@@ -25,10 +25,6 @@ export const Basket = () => {
     const closeModal = () => {
         setVisible(false)
     }
-
-    // const setaddress = () => {
-
-    // }
 
 
     return (
@@ -51,8 +47,6 @@ export const Basket = () => {
                         :
                         <span className="add__address" onClick={openModal}>add address</span>}
                 </div>
-                {visible &&
-                    <ModalAddress onOpen={openModal} onClose={closeModal} />}
 
                 <Button variant="primary" >pay</Button>
             </div>

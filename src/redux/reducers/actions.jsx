@@ -1,4 +1,4 @@
-import { ADD_TO_BASKET, TOTAL_PRICE, TOTAL_COUNT, DELETE_FROM_CART } from "./types"
+import { ADD_TO_BASKET, USER_DATA, TOTAL_PRICE, TOTAL_COUNT, DELETE_FROM_CART, USER_AUTH, READ_BRAND, READ_TYPE } from "./types"
 
 export function addItem(item) {
     return {
@@ -6,6 +6,20 @@ export function addItem(item) {
         payload: item
     }
 }
+
+export function allItems(list) {
+    return {
+        type: 'ADD_LIST',
+        payload: list
+    }
+}
+
+// export function currentItem(obj) {
+//     return {
+//         type: 'CURRENT_ITEM',
+//         payload: obj
+//     }
+// }
 
 export function totalCount() {
     return {
@@ -24,5 +38,34 @@ export function deleteFromCart(list) {
     return {
         type: DELETE_FROM_CART,
         payload: list
+    }
+}
+
+export function auth(bool) {
+    return {
+        type: USER_AUTH,
+        payload: bool
+    }
+}
+
+export function user(obj) {
+    return {
+        type: USER_DATA,
+        payload: obj
+    }
+}
+
+export function type(mas) {
+    return {
+        type: READ_TYPE,
+        payload: mas
+
+    }
+}
+
+export function brand(mas) {
+    return {
+        type: READ_BRAND,
+        payload: mas
     }
 }

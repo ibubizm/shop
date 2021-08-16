@@ -1,16 +1,26 @@
+
 import './card.scss'
+import { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { PRODUCT_ROUTE } from '../utils/const'
+
 
 
 export const Card = ({ item, onOpen, add }) => {
+    const history = useHistory()
+
+    const test = (id) => {
+        history.push(PRODUCT_ROUTE + '/' + id)
+    }
 
     return (
         <>
-            <div className="card" style={{ width: '15rem', display: 'flex', }}>
+            <div className="card" style={{ width: '15rem', height: '20rem', display: 'flex', }}>
                 <div className="card-img" onClick={() => onOpen(item)} >
-                    < img src={item.img} className="card-img-top" alt="..." />
+                    < img src={'http://localhost:5000/' + item.img} className="card-img-top" alt="..." />
                 </div>
                 <div className="card-body">
-                    <h5 className="card-title">{item.title}</h5>
+                    <h5 style={{ cursor: 'pointer' }} onClick={() => test(item.id)} className="card-title">{item.name}</h5>
                     <p className="card-text" style={{ maxRow: 4 }}>{item.description}</p>
                     <div className="footer__card">
                         <span>{item.price} BYN</span>
