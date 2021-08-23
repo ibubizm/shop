@@ -8,7 +8,7 @@ module.exports = function (role) {
         try {
             const token = req.headers.authorization.split(' ')[1]
             if (!token) {
-                return res.status(401).json({ message: 'no auth' })
+                return res.status(401).json({ message: 'no role' })
             }
             const decoded = jwt.verify(token, process.env.SECRET_KEY)
             if (decoded.role !== role) {
@@ -19,7 +19,7 @@ module.exports = function (role) {
 
         }
         catch (e) {
-            res.status(401).json({ message: 'no auth' })
+            res.status(401).json({ message: 'no catch' })
         }
     }
 }

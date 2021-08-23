@@ -9,7 +9,7 @@ import { useState } from "react"
 export const Basket = () => {
     const dispatch = useDispatch()
     const basketProduct = useSelector(({ ProductReducer }) => ProductReducer.items)
-    const totalprice = useSelector(({ ProductReducer }) => ProductReducer.price)
+    const { price, count } = useSelector(({ ProductReducer }) => ProductReducer)
     const [address, setAddress] = useState('')
     const [visible, setVisible] = useState(false)
 
@@ -41,11 +41,8 @@ export const Basket = () => {
             </div>
             <div className="footer" style={{ backgroundColor: 'gainsboro', width: 300 }}>
                 <div className="footer__date" style={{ display: 'grid' }}>
-                    <span>Total price: {totalprice}</span>
-                    {address ?
-                        <span>{address}</span>
-                        :
-                        <span className="add__address" onClick={openModal}>add address</span>}
+                    <span>Total price: {price}</span>
+                    <span>{count}</span>
                 </div>
 
                 <Button variant="primary" >pay</Button>

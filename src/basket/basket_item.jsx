@@ -1,13 +1,19 @@
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import Image from 'react-bootstrap/Image'
 import './basket.scss'
+import { Link } from 'react-router-dom'
 
 export const BasketItem = ({ item, del, index }) => {
+
     return (
-        <Card className="col-6" key={`${Date.now().toString()}_${item.id}`} style={{ maxWidth: '15rem' }}>
-            <Card.Img variant="top" src={item.img} />
+        <Card key={`${Date.now().toString()}_${item.id}`} style={{ maxWidth: '15rem' }}>
+            <Image variant="top" src={'http://localhost:5000/' + item.img} />
             <Card.Body>
-                <Card.Title>{item.title}</Card.Title>
+
+                <Link style={{ color: 'black', textDecoration: 'none' }} to={"/product/" + item.id}>
+                    <Card.Title>{item.name}</Card.Title>
+                </Link>
                 <Card.Text>
                     {item.description}
                 </Card.Text>

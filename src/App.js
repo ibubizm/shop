@@ -1,15 +1,19 @@
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { Nav } from './nav/nav'
-import { Basket } from './basket/basket'
-import { Home } from './home/home'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { Registration } from './log/registration'
 import { authRoutes, publicRoutes } from './route'
 import { HOME_ROUTE } from './utils/const'
 import { useDispatch, useSelector } from 'react-redux'
-import { allItems, auth } from './redux/reducers/actions'
+import { allItems, auth, user, type, brand } from './redux/reducers/actions'
 import { check } from './http/userApi'
+import { Spinner } from 'react-bootstrap'
+
+// import { allItems, brand, type } from './redux/reducers/actions'
+
+import { fetchProduct } from './http/productApi'
+import { fetchBrand } from './http/brandApi'
+import { fetchType } from './http/typeApi'
 
 
 function App() {
@@ -19,20 +23,27 @@ function App() {
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   axios.get('http://localhost:3001/items')
-  //     .then(({ data }) => dispatch(allItems(data)))
-  //     // .then(({ data }) => setItems(data))
-  //     .then(catigories())
-  // }, [])
 
   useEffect(() => {
+    fetchType()
+      .then(data => dispatch(type(data)))
+    fetchBrand()
+      .then(data => dispatch(brand(data)))
+    fetchProduct()
+      .then(({ rows }) => dispatch(allItems(rows)))
     check()
-      .then(( data ) => {
+      .then((data) => {
         dispatch(auth(true))
+        dispatch(user(data))
       })
       .finally(() => setLoading(false))
   }, [])
+
+  if (loading) {
+    return (
+      <Spinner animation="border" role="status" />
+    )
+  }
 
   const catigories = (cat, index) => {
     if (cat) {
@@ -69,16 +80,3 @@ function App() {
 }
 
 export default App;
-
-
-{/* <div className="container mt-5">
-  <Route path="/" exact >
-    <Home items={items} />
-  </Route>
-  <Route path="/basket">
-    <Basket />
-  </Route>
-  <Route path="/registration">
-    <Registration />
-  </Route>
-</div> */}

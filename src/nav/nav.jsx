@@ -2,32 +2,12 @@ import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
 import './nav.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { LOGIN_ROUTE } from '../utils/const'
+import { HOME_ROUTE, LOGIN_ROUTE } from '../utils/const'
 import { user, auth } from '../redux/reducers/actions'
+import Navbar from 'react-bootstrap/Navbar'
 
 
-
-
-const navLinks = [
-    {
-        name: 'All',
-        link: '/',
-        catigory: ''
-    },
-    {
-        name: 'Consoles',
-        link: '/consoles',
-        catigory: 'items'
-
-    },
-    {
-        name: 'Games',
-        link: '/games',
-        catigory: 'games'
-    }
-]
-
-export const Nav = ({ catigor, activeLink }) => {
+export const Nav = () => {
     const countItems = useSelector(({ ProductReducer }) => ProductReducer.count)
     const totalprice = useSelector(({ ProductReducer }) => ProductReducer.price)
     const isAuth = useSelector(({ UserReducer }) => UserReducer.auth)
@@ -37,6 +17,7 @@ export const Nav = ({ catigor, activeLink }) => {
     const logOff = () => {
         dispatch(auth(false))
         dispatch(user({}))
+        localStorage.removeItem('token')
     }
 
 
@@ -45,17 +26,9 @@ export const Nav = ({ catigor, activeLink }) => {
             <div className="container">
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        {navLinks.map((link, index) =>
-                            <li className="nav-item" key={`${index}_${Date.now().toString()}`}>
-                                <Link
-                                    onClick={() => catigor(link.catigory, index)}
-                                    className={index === activeLink ? "nav-link active" : 'nav-link'}
-                                    aria-current="page"
-                                    to="/">
-                                    {link.name}
-                                </Link>
-                            </li>
-                        )}
+                        <Navbar.Brand href={HOME_ROUTE}>
+                            Home
+                        </Navbar.Brand>
                     </ul>
 
                     {isAuth ?

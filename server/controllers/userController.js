@@ -41,8 +41,9 @@ class UserController {
             return next(ApiErroe.badRequest('user already exist'))
         }
         const token = generateJwt(user.id, user.email, user.role)
-        console.log(user.role)
+
         let comparePassword = bcrypt.compareSync(password, user.password)
+
         if (!comparePassword) {
             return next(ApiError.badRequest('wrong password'))
         }
@@ -51,7 +52,7 @@ class UserController {
 
     async check(req, res, next) {
         const token = generateJwt(req.user.id, req.user.email, req.user.role)
-        res.json({ token })
+        return res.json({ token })
     }
 }
 

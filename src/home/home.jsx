@@ -23,14 +23,6 @@ export const Home = () => {
     const items = useSelector(({ ItemsReducer }) => ItemsReducer.items)
 
     const dispatch = useDispatch()
-    useEffect(() => {
-        fetchType()
-            .then(data => dispatch(type(data)))
-        fetchBrand()
-            .then(data => dispatch(brand(data)))
-        fetchProduct()
-            .then(({ rows }) => dispatch(allItems(rows)))
-    }, [])
 
 
     const openModal = (item) => {
@@ -61,19 +53,19 @@ export const Home = () => {
                 </Col>
                 <Col>
                     <BrandBar />
+                    <Row>
+                        {items.map((item, index) =>
+                            <Col xs={4} key={`${index}_${Date.now().toString()}`}>
+                                <Card
+                                    item={item}
+                                    onOpen={openModal}
+                                    add={add}
+                                />
+                            </Col>
+                        )}
+                    </Row>
                 </Col>
-                <Row>
-                    {items.map((item, index) =>
-                        <Col xs={3} key={`${index}_${Date.now().toString()}`}>
 
-                            <Card
-                                item={item}
-                                onOpen={openModal}
-                                add={add}
-                            />
-                        </Col>
-                    )}
-                </Row>
                 {visible &&
                     <ModalCard item={activeItem} onOpen={openModal} onClose={closeModal} />
                 }

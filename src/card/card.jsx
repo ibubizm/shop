@@ -3,6 +3,7 @@ import './card.scss'
 import { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { PRODUCT_ROUTE } from '../utils/const'
+import { Image } from 'react-bootstrap'
 
 
 
@@ -17,7 +18,7 @@ export const Card = ({ item, onOpen, add }) => {
         <>
             <div className="card" style={{ width: '15rem', height: '20rem', display: 'flex', }}>
                 <div className="card-img" onClick={() => onOpen(item)} >
-                    < img src={'http://localhost:5000/' + item.img} className="card-img-top" alt="..." />
+                    <Image style={{ height: 200 }} src={'http://localhost:5000/' + item.img} className="card-img-top" alt="..." />
                 </div>
                 <div className="card-body">
                     <h5 style={{ cursor: 'pointer' }} onClick={() => test(item.id)} className="card-title">{item.name}</h5>
