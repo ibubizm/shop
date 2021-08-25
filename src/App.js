@@ -14,12 +14,15 @@ import { Spinner } from 'react-bootstrap'
 import { fetchProduct } from './http/productApi'
 import { fetchBrand } from './http/brandApi'
 import { fetchType } from './http/typeApi'
+import { fetchBasket } from './http/basketApi'
 
 
 function App() {
   const [items, setItems] = useState([])
   const [activeLink, setActiveLink] = useState(0)
   const isAuth = useSelector(({ UserReducer }) => UserReducer.auth)
+  const userId = useSelector(({ UserReducer }) => UserReducer.user.id)
+  const { brandId, typeId } = useSelector(({ ItemsReducer }) => ItemsReducer)
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
 
@@ -29,15 +32,21 @@ function App() {
       .then(data => dispatch(type(data)))
     fetchBrand()
       .then(data => dispatch(brand(data)))
-    fetchProduct()
+    fetchProduct(brandId, typeId)
       .then(({ rows }) => dispatch(allItems(rows)))
+      .then(() => fetchBasket(userId)
+        .then(({ item }) => console.log(item)))
     check()
       .then((data) => {
         dispatch(auth(true))
         dispatch(user(data))
       })
+
+    fetchBasket(userId)
+      .then(({ item }) => console.log(item))
+
       .finally(() => setLoading(false))
-  }, [])
+  }, [brandId, typeId])
 
   if (loading) {
     return (
@@ -45,24 +54,10 @@ function App() {
     )
   }
 
-  const catigories = (cat, index) => {
-    if (cat) {
-      axios.get(`http://localhost:3001/items?catigories=${cat}`)
-        .then(({ data }) => setItems(data))
-        .then(setActiveLink(index))
-
-    }
-    else {
-      axios.get('http://localhost:3001/items')
-        .then(({ data }) => setItems(data))
-        .then(setActiveLink(index))
-    }
-  }
-
 
   return (
     <>
-      <Nav catigor={catigories} activeLink={activeLink} />
+      <Nav />
       <Switch>
         <div className="container mt-5">
           {isAuth && authRoutes.map(({ path, Component }) =>

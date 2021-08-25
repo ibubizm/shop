@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { ModalCard } from '../card/modalCard'
 import { Slider } from './slider'
 import { useDispatch, useSelector } from 'react-redux'
-import { addItem, allItems, brand, type } from '../redux/reducers/actions'
+import { addItem, allItems, brand, current_brand, type } from '../redux/reducers/actions'
 import { totalPrice, totalCount } from "../redux/reducers/actions"
 import { useEffect } from 'react'
 import { SideBar } from './sidebar'
@@ -20,9 +20,13 @@ import { BrandBar } from './brandBar'
 export const Home = () => {
     const [visible, setVisible] = useState(false)
     const [activeItem, setActiveItem] = useState()
-    const items = useSelector(({ ItemsReducer }) => ItemsReducer.items)
+    const { items } = useSelector(({ ItemsReducer }) => ItemsReducer)
 
     const dispatch = useDispatch()
+
+    // useEffect(() => {
+    //     fetchProduct(brandId, typeId)
+    // }, [brandId, typeId])
 
 
     const openModal = (item) => {
