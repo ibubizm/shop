@@ -2,38 +2,37 @@ import { useDispatch, useSelector } from "react-redux"
 import Button from 'react-bootstrap/Button'
 import { BasketItem } from "./basket_item"
 import { useEffect } from "react"
-import { totalPrice, deleteFromCart } from "../redux/reducers/actions"
+import { deleteFromCart } from "../redux/reducers/actions"
 import { useState } from "react"
-// import { ModalAddress } from './modalAddress'
+
+import { deleteItemFromBasket } from "../http/basketApi"
 
 export const Basket = () => {
     const dispatch = useDispatch()
-    const basketProduct = useSelector(({ ProductReducer }) => ProductReducer.items)
-    const { price, count } = useSelector(({ ProductReducer }) => ProductReducer)
-    const [address, setAddress] = useState('')
-    const [visible, setVisible] = useState(false)
+    const items = useSelector(({ BasketReducer }) => BasketReducer.items)
+    const userId = useSelector(({ UserReducer }) => UserReducer.user.id)
+    const { price, count } = useSelector(({ BasketReducer }) => BasketReducer)
+    const [basketProduct, setBasketProduct] = useState([])
 
-    const del = (index) => {
+    useEffect(() => {
+        setBasketProduct(items)
+    }, [items])
+
+
+    const del = async (item, index) => {
         basketProduct.splice(index, 1)
         dispatch(deleteFromCart(basketProduct))
+        await deleteItemFromBasket(userId, item.id, item.itemId)
     }
-
-    const openModal = () => {
-        setVisible(true)
-    }
-
-    const closeModal = () => {
-        setVisible(false)
-    }
-
 
     return (
         <>
             <h1>basket</h1>
             <div className="row mb-5  row-cols-lg-2" >
+
                 {basketProduct.length ?
                     basketProduct.map((item, index) =>
-                        <BasketItem item={item} del={del} index={index} />
+                        <BasketItem item={item} index={index} del={del} />
                     )
                     :
                     <h1>cart is empty</h1>
@@ -42,9 +41,8 @@ export const Basket = () => {
             <div className="footer" style={{ backgroundColor: 'gainsboro', width: 300 }}>
                 <div className="footer__date" style={{ display: 'grid' }}>
                     <span>Total price: {price}</span>
-                    <span>{count}</span>
+                    <span>Total count: {count}</span>
                 </div>
-
                 <Button variant="primary" >pay</Button>
             </div>
 

@@ -5,7 +5,7 @@ const initialState = {
     price: 0
 }
 
-export function ProductReducer(state = initialState, action) {
+export function BasketReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_TO_BASKET:
             // const allObjInCart = [].concat.apply([], Object.values([...state.items]))
@@ -13,13 +13,6 @@ export function ProductReducer(state = initialState, action) {
                 ...state,
                 items: [...state.items, action.payload],
             }
-
-        // case 'CURRENT_ITEM':
-        //     return {
-        //         ...state,
-        //         currentItem: action.payload
-        //     }
-
 
         case TOTAL_PRICE:
             const price = [...state.items].reduce((sum, obj) => Number(obj.price) + sum, 0)

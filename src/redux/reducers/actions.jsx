@@ -1,6 +1,6 @@
 import { ADD_TO_BASKET, USER_DATA, TOTAL_PRICE, TOTAL_COUNT, DELETE_FROM_CART, USER_AUTH, READ_BRAND, READ_TYPE, CURRENT_BRAND, CURRENT_TYPE } from "./types"
 
-export function addItem(item) {
+export function addToBasket(item) {
     return {
         type: ADD_TO_BASKET,
         payload: item

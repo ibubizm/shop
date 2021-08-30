@@ -92,7 +92,7 @@ export const Login = () => {
                                 type={'submit'}
                                 className={'align-self-end mt-2'}
                             >
-                                registration
+                                log in
                             </Button>
                         </Row>
                     </Form>
