@@ -1,43 +1,26 @@
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { Nav } from './nav/nav'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 import { authRoutes, publicRoutes } from './route'
-import { HOME_ROUTE, PRODUCT_ROUTE } from './utils/const'
 import { useDispatch, useSelector } from 'react-redux'
-import { allItems, auth, user, type, brand, addToBasket } from './redux/reducers/actions'
+import { auth, user, addToBasket } from './redux/reducers/actions'
 import { check } from './http/userApi'
 import { Spinner } from 'react-bootstrap'
 
-import { fetchOneProduct, fetchProduct } from './http/productApi'
-import { fetchBrand } from './http/brandApi'
-import { fetchType } from './http/typeApi'
+import { fetchOneProduct } from './http/productApi'
+
 import { fetchBasket } from './http/basketApi'
 
 import { totalPrice, totalCount } from "./redux/reducers/actions"
-import { ItemPage } from './card/itemPage'
-
-
 
 
 function App() {
   const isAuth = useSelector(({ UserReducer }) => UserReducer.auth)
-  const { brandId, typeId } = useSelector(({ ItemsReducer }) => ItemsReducer)
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
 
-  const { items } = useSelector(({ BasketReducer }) => BasketReducer)
-
-  const authUser = useSelector(({ UserReducer }) => UserReducer.user)
-
-
   useEffect(() => {
     try {
-      fetchType()
-        .then(data => dispatch(type(data)))
-      fetchBrand()
-        .then(data => dispatch(brand(data)))
-      fetchProduct(brandId, typeId)
-        .then(({ rows }) => dispatch(allItems(rows)))
       check()
         .then((data) => {
           dispatch(auth(true))
@@ -60,9 +43,7 @@ function App() {
     } catch (e) {
       console.log(e)
     }
-
-
-  }, [brandId, typeId])
+  }, [dispatch])
 
 
   if (loading) {
@@ -93,4 +74,4 @@ function App() {
   );
 }
 
-export default App;
+export default memo(App)

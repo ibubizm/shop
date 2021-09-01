@@ -1,5 +1,5 @@
 import { Admin } from './admin/admin'
-import { Basket } from './basket/basket'
+import Basket from './basket/basket'
 import { ItemPage } from './card/itemPage'
 import { Home } from './home/home'
 import { Login } from './log/login'

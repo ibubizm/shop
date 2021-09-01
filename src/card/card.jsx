@@ -2,7 +2,6 @@
 import './card.scss'
 import { useHistory } from 'react-router-dom'
 import { PRODUCT_ROUTE } from '../utils/const'
-import Image from 'react-bootstrap/Image'
 import { CardImg } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
 

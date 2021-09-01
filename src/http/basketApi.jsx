@@ -1,4 +1,4 @@
-import { $host, $authHost } from './index'
+import { $authHost } from './index'
 
 export const createBasketItem = async (basketId, productId) => {
     const { data } = await $authHost.post('api/basket', { basketId, productId })

@@ -1,5 +1,4 @@
 import ListGroup from 'react-bootstrap/ListGroup'
-import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { current_brand } from '../redux/reducers/actions'
 

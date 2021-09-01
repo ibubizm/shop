@@ -3,11 +3,11 @@ import Button from 'react-bootstrap/Button'
 import { BasketItem } from "./basket_item"
 import { useEffect } from "react"
 import { deleteFromCart } from "../redux/reducers/actions"
-import { useState } from "react"
+import { useState, memo } from "react"
 
 import { deleteItemFromBasket } from "../http/basketApi"
 
-export const Basket = () => {
+const Basket = () => {
     const dispatch = useDispatch()
     const items = useSelector(({ BasketReducer }) => BasketReducer.items)
     const userId = useSelector(({ UserReducer }) => UserReducer.user.id)
@@ -32,7 +32,7 @@ export const Basket = () => {
 
                 {basketProduct.length ?
                     basketProduct.map((item, index) =>
-                        <BasketItem item={item} index={index} del={del} />
+                        <BasketItem key={`${item.id}_${index}`} item={item} index={index} del={del} />
                     )
                     :
                     <h1>cart is empty</h1>
@@ -49,3 +49,6 @@ export const Basket = () => {
         </>
     )
 }
+
+
+export default memo(Basket)

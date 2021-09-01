@@ -1,11 +1,14 @@
-import { READ_BRAND, READ_TYPE, CURRENT_BRAND, CURRENT_TYPE } from "./types"
+import { READ_BRAND, COUNT_ITEMS_PAGE, LIMINT_ON_PAGE, CURRENT_PAGE, READ_TYPE, CURRENT_BRAND, CURRENT_TYPE } from "./types"
 
 const initialState = {
     items: [],
     types: [],
     brands: [],
     brandId: null,
-    typeId: null
+    typeId: null,
+    currentPage: 1,
+    limitOnPage: 3,
+    count: 0
 }
 
 export function ItemsReducer(state = initialState, action) {
@@ -35,6 +38,25 @@ export function ItemsReducer(state = initialState, action) {
                 ...state,
                 typeId: action.payload
             }
+
+        case CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.payload
+            }
+
+        case LIMINT_ON_PAGE:
+            return {
+                ...state,
+                limitOnPage: action.payload
+            }
+        case COUNT_ITEMS_PAGE:
+            return {
+                ...state,
+                count: action.payload
+            }
         default: return state
     }
+
+
 }

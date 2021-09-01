@@ -59,7 +59,7 @@ export const Nav = () => {
                         </>
 
                     }
-                    {authUser.role == 'ADMIN' && <Link style={{ color: '#fff', marginLeft: '20px' }} to="/admin">
+                    {authUser.role === 'ADMIN' && <Link style={{ color: '#fff', marginLeft: '20px' }} to="/admin">
                         admin
                     </Link>}
                 </div>

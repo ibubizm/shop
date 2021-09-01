@@ -2,7 +2,6 @@ import { Formik } from 'formik'
 import * as yup from 'yup'
 import Button from 'react-bootstrap/Button'
 import './reg.scss'
-import axios from 'axios'
 import Form from 'react-bootstrap/Form'
 import Card from 'react-bootstrap/Card'
 import { Row } from 'react-bootstrap'
@@ -11,9 +10,6 @@ import { Link } from 'react-router-dom'
 import { registration } from '../http/userApi'
 
 export const Registration = () => {
-    // const createUser = (obj) => {
-    //     axios.post('http://localhost:3001/users', obj)
-    // }
 
     const regClick = ({ name, lastName, email, password }) => {
         const response = registration(name, lastName, email, password)
